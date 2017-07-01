@@ -1,0 +1,41 @@
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
+
+
+## Loading and preprocessing the data
+Before analysing, we need to laod the data into an R dataframe. It is assumed that the data lies in a zip file within the same directory as this .Rmd file.
+
+```{r}
+activity_data <- read.table(unz("activity.zip", "activity.csv"), header=TRUE, sep = ",", na.string="NA")
+
+```
+Let's have some closer look at the data.
+```{r}
+nrow(activity_data)
+str(activity_data)
+head(activity_data)
+tail(activity_data)
+summary(activity_data)
+```
+So, this data set contains 17568 entries with 2304 missing values in the activity column. The data was measured in the months October and November in 2012 every 5 minutes, with each day having 288 entries.
+
+## What is mean total number of steps taken per day?
+
+```{r}
+grouped_activity_data <- group_by(activity_data, date)
+steps_per_day <- summarize(grouped_activity_data, sum_steps = sum(steps, na.rm=TRUE))
+```
+
+## What is the average daily activity pattern?
+
+
+
+## Imputing missing values
+
+
+
+## Are there differences in activity patterns between weekdays and weekends?
